@@ -10,7 +10,9 @@ function App() {
   return (
       <Container>
           <Row>
-              <h2>Provider Registration</h2>
+              <Container>
+                  <h2>Provider Registration</h2>
+              </Container>
           </Row>
           <Row>
               <RegistrationForm/>
