@@ -192,6 +192,8 @@ exports[`Should render 1`] = `
                   <input
                     className="form-control"
                     id="formState"
+                    maxlength={2}
+                    minlength={2}
                     name="state"
                     onChange={[Function]}
                     required={true}
@@ -218,6 +220,7 @@ exports[`Should render 1`] = `
                   <input
                     className="form-control"
                     id="formZip"
+                    maxlength={9}
                     minlength={5}
                     name="zip"
                     onChange={[Function]}
@@ -244,16 +247,24 @@ exports[`Should render 1`] = `
                     className="form-label"
                     htmlFor="formPhoneNumber"
                   >
-                    Phone number
+                    Phone number *
                   </label>
                   <input
                     className="form-control"
                     id="formPhoneNumber"
-                    maxlength="12"
+                    maxlength={10}
+                    minlength={10}
                     name="phone"
                     onChange={[Function]}
+                    pattern="[0-9]{10}"
+                    required={true}
                     type="tel"
                   />
+                  <div
+                    className="invalid-feedback"
+                  >
+                    
+                  </div>
                 </div>
               </div>
               <div

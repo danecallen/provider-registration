@@ -87,9 +87,12 @@ class RegistrationForm extends React.Component{
             errors["zip"] = "Must be a valid US Postal Code"
         }
 
-        if(phone && !/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(phone)){
+        if(!phone){
             valid = false;
-            errors['phone'] = "Must be valid 10 digit phone number";
+            errors['phone'] = "Phone number is required";
+        } else if(!/^[0-9]{10}$/.test(phone)){
+            valid = false;
+            errors['phone'] = "Must be a valid 10 digit phone number";
         }
 
         this.setState({errors: errors, validated: true});
@@ -178,7 +181,7 @@ class RegistrationForm extends React.Component{
                                 <Col xs={3}>
                                     <Form.Group  controlId="formState">
                                         <Form.Label>State *</Form.Label>
-                                        <Form.Control name="state" onChange={this.handleChange} required/>
+                                        <Form.Control name="state" onChange={this.handleChange} required minlength={2} maxlength={2}/>
                                         <Form.Control.Feedback type="invalid">
                                             {errors.state}
                                         </Form.Control.Feedback>
@@ -187,7 +190,7 @@ class RegistrationForm extends React.Component{
                                 <Col xs={4}>
                                     <Form.Group  controlId="formZip">
                                         <Form.Label>Postal Code *</Form.Label>
-                                        <Form.Control name="zip" onChange={this.handleChange} required minlength={5}/>
+                                        <Form.Control name="zip" onChange={this.handleChange} required maxlength={9} minlength={5}/>
                                         <Form.Control.Feedback type="invalid">
                                             {errors.zip}
                                         </Form.Control.Feedback>
@@ -197,8 +200,11 @@ class RegistrationForm extends React.Component{
                             <Row>
                                 <Col xs={6}>
                                     <Form.Group controlId="formPhoneNumber">
-                                        <Form.Label>Phone number</Form.Label>
-                                        <Form.Control type="tel" name="phone" onChange={this.handleChange} maxlength="12" />
+                                        <Form.Label>Phone number *</Form.Label>
+                                        <Form.Control type="tel" maxlength={10} minlength={10} name="phone" pattern="[0-9]{10}" required onChange={this.handleChange}/>
+                                        <Form.Control.Feedback type="invalid">
+                                            {errors.phone}
+                                        </Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
                                 <Col xs={6}>
